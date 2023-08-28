@@ -1,6 +1,0 @@
-SELECT
-  CONCAT(latitude, "  ", longitude) AS loc
-, COUNT(*) AS nb
-FROM `prello.POI_tourist_establishments`
-GROUP BY loc
-HAVING nb < 2
