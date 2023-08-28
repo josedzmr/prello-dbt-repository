@@ -1,9 +1,11 @@
+--test no nulls outside of long&lat / lots of duplicated? but is it really? / no <0 values
+
 SELECT 
     fullname
     , DATE(sales_date) as sales_date -- Set as date
     , sales_amount
     , street_number
-    , street_code	
+    , street_code
     , street_name
     , nom_commune
     , municipality_code
