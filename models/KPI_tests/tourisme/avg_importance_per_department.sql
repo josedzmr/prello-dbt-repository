@@ -17,7 +17,7 @@ GROUP BY department
   SELECT
   department
   , AVG(poverty_rate) AS avg_poverty_rate
-FROM {{ref("sgt_poverty_2018_insee")}}
+FROM {{ref("stg_poverty_2018_insee")}}
 GROUP BY department
 )
 
