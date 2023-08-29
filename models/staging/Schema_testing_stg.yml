@@ -43,4 +43,37 @@ models:
       - name: department
         tests:
           - not_null
-      
+
+  - name: stg_average_salary_by_municipality
+    columns:
+      - name: department
+        tests:
+          - not_null
+      - name: avg_net_salary
+        tests:
+          - not_null
+
+  - name: stg_geographical_referential_check
+    columns:
+      - name: department
+        tests:
+          - not_null
+      - name: city_name
+        tests:
+          - not_null
+
+  - name: stg_RE_info_by_municipality
+    columns:
+      - name: department
+        tests:
+          - not_null
+
+  - name: stg_population_by_municipality
+    columns:
+      - name: prim_key
+        tests:
+          - unique
+          - not_null
+      - name: department
+        tests:
+          - not_null
