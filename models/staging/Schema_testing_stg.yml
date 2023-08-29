@@ -35,4 +35,12 @@ models:
         tests:
           - not_null
 
+  - name: stg_notary_real_estate_sales
+    columns:
+      - name: sales_amount
+        tests:
+          - not_null
+      - name: department
+        tests:
+          - not_null
       
