@@ -1,0 +1,5 @@
+SELECT
+municipality_code
+,avg_net_salary
+,year
+FROM prello-lewagon.prello.average_salary_by_municipality
