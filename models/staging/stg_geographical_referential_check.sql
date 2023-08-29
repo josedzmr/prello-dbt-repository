@@ -1,10 +1,10 @@
-{# geographical_referential table check #}
-{# No null values or duplicates found#}
 SELECT
     municipality_code
-    ,city_name_normalized AS city_name
+    ,city_name_normalized AS city_name {# used for clarity. original "city_name" column is not include, since it is the same name as "normalized", but with special characters #}
     ,municipality_type
-    ,CONCAT(municipality_code, " ", latitude, " ", longitude ) as location --used as primary key to check for duplicates
-    ,department_name
+    ,epci_code {# maintained for completion. It includes 52 null values in total, related to urban areas/cities in France without an epci code #}
+    ,latitude
+    ,longitude
     ,department_code
+    ,department_name
 FROM prello-lewagon.prello.geographical_referential
