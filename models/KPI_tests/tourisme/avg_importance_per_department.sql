@@ -13,11 +13,22 @@ FROM {{ref("stg_POI_tourist_establishments")}}
 GROUP BY department
 )
 
+, poverty as (
+  SELECT
+  department
+  , AVG(poverty_rate) AS avg_poverty_rate
+FROM {{ref("sgt_poverty_2018_insee")}}
+GROUP BY department
+)
+
 SELECT 
   site.department as department
   , site.avg_site_importance
   , establishement.avg_estab_importance
+  , poverty.avg_poverty_rate
 FROM establishements as establishement
 INNER JOIN sites as site
 ON site.department = establishement.department
+INNER JOIN poverty as poverty
+ON poverty.department = establishement.department
 ORDER BY site.department ASC
