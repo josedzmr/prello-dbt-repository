@@ -6,7 +6,7 @@ SELECT
 FROM `prello-lewagon.prello.POI_touristic_sites_by_municipality` 
 )
 SELECT
-  poi
+  poi as touristic_site
 , latitude
 , longitude
 , municipality_code
