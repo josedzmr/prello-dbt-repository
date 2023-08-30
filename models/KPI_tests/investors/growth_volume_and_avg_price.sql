@@ -11,4 +11,5 @@ SELECT
 FROM {{ref('avg_m2price_growth')}} av
 LEFT JOIN {{ref('sales_numbers_growth')}} sa
 USING(pk)
+WHERE av.year = 2021
 ORDER BY av.department, av.year ASC

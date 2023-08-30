@@ -13,7 +13,7 @@ GROUP BY year, department
 growth AS (
 SELECT
     *
-,   ROUND(((population_total - (LAG(population_total) OVER (PARTITION BY department ORDER BY year ASC)))/LAG(population_total) OVER (PARTITION BY department ORDER BY year ASC)) * 100, 2) AS population_growth
+,   ROUND(((population_total - (LAG(population_total) OVER (PARTITION BY department ORDER BY year ASC)))/LAG(population_total) OVER (PARTITION BY department ORDER BY year ASC)) * 100, 2) AS population_growth_last10y
 FROM dep_population
 ORDER BY department, year ASC
 )
