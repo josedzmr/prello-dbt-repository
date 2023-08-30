@@ -7,7 +7,7 @@ SELECT
   EXTRACT(YEAR from sales_date) AS year
 , department
 , COUNT(*) AS sales_numbers
-FROM `dbt_louis2506_staging.stg_notary_real_estate_sales`
+FROM {{ref("stg_notary_real_estate_sales")}}
 WHERE sales_date > '2017-12-31'   --remove year 2017
 GROUP BY year, department
 )
