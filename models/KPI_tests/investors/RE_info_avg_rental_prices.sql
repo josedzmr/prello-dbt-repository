@@ -21,7 +21,7 @@ SELECT
     , ROUND(AVG(intensite_tension_immo),4) as avg_intensite_tension_immo
     , ROUND(AVG(avg_rental_apartment),4) as avg_rental_apartment
     , ROUND(AVG(avg_rental_house),4) as avg_rental_house
-    , ROUND(AVG(avg_rental_all),4) as avg_rental_house
+    , ROUND(AVG(avg_rental_all),4) as avg_rental_all
 FROM avgs
 GROUP BY department
 ORDER BY department
