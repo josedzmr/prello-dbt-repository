@@ -5,3 +5,4 @@ SELECT
 FROM `prello-lewagon.prello.notary_real_estate_sales`
 WHERE EXTRACT(YEAR FROM DATE(sales_date)) = 2021
 GROUP BY department
+ORDER BY department
