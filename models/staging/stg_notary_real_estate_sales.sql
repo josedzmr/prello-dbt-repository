@@ -1,20 +1,37 @@
 /*
+Creating a partioned table
 Test no nulls outside of long&lat 
 Removing most of outliers
 Removing """"duplicates"""" 
 Removing 97 department 
 */
-WITH test AS (
+
+{{config(
+    materialized='table',
+    partition_by={
+        'field': 'sales_date',
+        'data_type': 'date',
+        'granularity': 'day'
+    }
+)}}
+
+WITH create_department AS (
+SELECT
+    *
+,   LEFT(municipality_code,2) AS department
+FROM `prello-lewagon.prello.notary_real_estate_sales`
+),
+test AS (
 SELECT  
   sales_amount
-, sales_date
+, DATE(sales_date) AS sales_date -- Set as date
 , department
 , premise_type
 , SUM(number_of_principal_rooms) AS number_of_principal_rooms
 , SUM(surface) AS surface
 , SUM(sales_price_m2) AS sales_price_m2
 , COUNT(*) AS nb
-FROM `prello-lewagon.louis_test.stg_notary_partitioned` 
+FROM create_department 
 WHERE department < '97'
 GROUP BY sales_amount, sales_date, department, premise_type
 HAVING nb = 1
