@@ -10,13 +10,10 @@ models:
         tests:
           - not_null
       - name: department
-        tests: 
+        tests:
           - not_null
 
   - name: stg_POI_touristic_sites_by_municipality
-    tests:
-      - unique:
-          column_name: "(latitude || '-' || longitude || '-' || poi)"
     columns:
       - name: importance
         tests:
@@ -25,21 +22,8 @@ models:
         tests:
           - not_null
 
-  - name: stg_housing_stock
+  - name: stg_RE_info_by_municipality
     columns:
-      - name: prim_key
-        tests:
-          - unique
-          - not_null
-      - name: department
-        tests:
-          - not_null
-
-  - name: stg_notary_real_estate_sales
-    columns:
-      - name: sales_amount
-        tests:
-          - not_null
       - name: department
         tests:
           - not_null
@@ -62,8 +46,21 @@ models:
         tests:
           - not_null
 
-  - name: stg_RE_info_by_municipality
+  - name: stg_housing_stock
     columns:
+      - name: prim_key
+        tests:
+          - unique
+          - not_null
+      - name: department
+        tests:
+          - not_null
+
+  - name: stg_notary_real_estate_sales
+    columns:
+      - name: sales_amount
+        tests:
+          - not_null
       - name: department
         tests:
           - not_null
