@@ -43,3 +43,6 @@ models:
       investors: 
         schema: 'investors_KPI'
         materialized: table
+      prep_investors:
+        schema: 'prep_investors'
+        materialized: view
