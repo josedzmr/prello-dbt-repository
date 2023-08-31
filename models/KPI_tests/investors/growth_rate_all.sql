@@ -19,9 +19,11 @@ SELECT
 ,   pri.avg_m2_price_growth_last_year AS avg_m2_price_rental_growth_last_year
 ,   yie.rental_med_all
 ,   yie.gross_yield * 100 AS gross_yield
+,   ten.intensite_tension_immo
 FROM {{ ref('department_population_growth') }} pop
 LEFT JOIN {{ ref('economic_growth_rate') }} eco USING(department)
 LEFT JOIN {{ ref('gross_yield') }} yie USING(department)
 LEFT JOIN {{ ref('growth_volume_and_avg_price') }} pri USING(department)
+LEFT JOIN {{ ref('intensite_immo') }} ten USING(department)
 WHERE department < '97'
 ORDER BY department ASC
