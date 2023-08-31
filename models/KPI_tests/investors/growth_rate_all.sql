@@ -18,7 +18,7 @@ SELECT
 ,   pri.avg_m2_price AS avg_m2_price_sales
 ,   pri.avg_m2_price_growth_last_year AS avg_m2_price_rental_growth_last_year
 ,   yie.rental_med_all
-,   yie.gross_yield * 100 AS gross_yield
+,   yie.gross_yield AS gross_yield
 ,   ten.intensite_tension_immo
 FROM {{ ref('department_population_growth') }} pop
 LEFT JOIN {{ ref('economic_growth_rate') }} eco USING(department)
