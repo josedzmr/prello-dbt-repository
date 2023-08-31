@@ -59,5 +59,5 @@ SELECT
 ,   foreigners_camping_rate
 ,   secondary_home_rate
 ,   nb_second_home
-,  ((overnight_stay_hotel * (foreigners_hotel_rate/100))+(overnight_stay_camping * (foreigners_camping_rate/100))) /(overnight_stay_camping+overnight_stay_hotel) AS foreigners_rate
+,  (overnight_stay_camping+overnight_stay_hotel) * ((overnight_stay_hotel * (foreigners_hotel_rate/100))+(overnight_stay_camping * (foreigners_camping_rate/100))) /(overnight_stay_camping+overnight_stay_hotel) AS foreigners_stay_total
 FROM a_replace
