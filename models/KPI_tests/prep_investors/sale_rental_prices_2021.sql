@@ -1,12 +1,12 @@
 WITH sales AS(
-    SELECT 
-        department
-        , AVG(surface) as avg_surface_2021
-        , AVG(sales_price_m2) as avg_sales_price_m2_2021
-    FROM {{ ref('stg_notary_with_municipality_code') }}
-    WHERE EXTRACT(YEAR FROM DATE(sales_date)) = 2021
-    GROUP BY department
-    ORDER BY department
+SELECT 
+    department
+    , AVG(surface) as avg_surface_2021
+    , AVG(sales_price_m2) as avg_sales_price_m2_2021
+FROM {{ ref('stg_notary_with_municipality_code') }}
+WHERE EXTRACT(YEAR FROM DATE(sales_date)) = 2021
+GROUP BY department
+ORDER BY department
 )
 SELECT 
     sales.department
