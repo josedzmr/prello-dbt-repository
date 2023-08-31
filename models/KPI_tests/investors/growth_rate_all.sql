@@ -11,15 +11,14 @@ SELECT
 ,   pop.population_total
 ,   pop.population_growth_last10y
 ,   eco.avg_salary
-,   ROUND(eco.growth_rate_last5y,2) AS growth_rate_last5y
-,   yie.avg_sales_price_m2_2021
-,   yie.avg_surface_2021
-,   yie.rental_med_all
-,   yie.gross_yield
-,   pri.avg_m2_price
-,   pri.avg_m2_price_growth_last_year
+,   ROUND(eco.growth_rate_last5y,2) AS growth_rate_avg_salary_last5y
 ,   pri.sales_numbers
 ,   pri.sales_numbers_growth
+,   yie.avg_surface_2021 AS avg_surface_2021_sales
+,   pri.avg_m2_price AS avg_m2_price_sales
+,   pri.avg_m2_price_growth_last_year AS avg_m2_price_rental_growth_last_year
+,   yie.rental_med_all
+,   yie.gross_yield
 FROM {{ ref('department_population_growth') }} pop
 LEFT JOIN {{ ref('economic_growth_rate') }} eco USING(department)
 LEFT JOIN {{ ref('gross_yield') }} yie USING(department)
