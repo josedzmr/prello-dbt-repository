@@ -36,10 +36,11 @@ GROUP BY department
 FROM {{ref("stg_frequentation_touristic_establishment")}}
 )
 
-, sh_rate AS (
+, sh_rate AS(
 SELECT 
   department
   , secondary_home_rate
+  , nb_second_home
 FROM {{ref("housing_stock_departm_2008-2018")}}
 WHERE year = 2018
 )
@@ -47,6 +48,7 @@ WHERE year = 2018
 SELECT 
   site.department as department
   , sh.secondary_home_rate
+  , sh.nb_second_home
   , site.nb_accomodation_type
   , site.avg_site_importance
   , site.sum_site_importance
