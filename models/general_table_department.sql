@@ -12,6 +12,8 @@ SELECT
 ,   tou.foreigners_hotel_rate
 ,   tou.overnight_stay_camping
 ,   tou.foreigners_camping_rate
+,   tou.secondary_home_rate
+,   tou.nb_second_home
 FROM {{ ref('growth_rate_all') }} inv
 LEFT JOIN {{ ref('avg_importance_per_department') }} tou
 USING(department)
