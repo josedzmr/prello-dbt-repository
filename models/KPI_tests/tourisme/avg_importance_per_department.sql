@@ -36,7 +36,7 @@ GROUP BY department
 FROM {{ref("stg_frequentation_touristic_establishment")}}
 )
 
-WITH sh_rate AS (
+, sh_rate AS (
 SELECT 
   department
   , secondary_home_rate
