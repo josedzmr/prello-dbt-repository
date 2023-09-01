@@ -8,8 +8,8 @@ FROM {{ref('stg_geometry_final')}}
 
 SELECT
     gen.department_cleaned AS department
-    , gen.tourism_score
-	, gen.invest_score
+    , gen.w_tourism_score
+	, gen.w_invest_score
 	, gen.scaled_invest_score
 	, gen.scaled_tourism_score
 	, gen.general_score
@@ -30,7 +30,7 @@ SELECT
     , gen.w_gross_yield
     , gen.w_avg_m2_price
     , gen.w_rental_med
-    , gen.w_intensite_imo
+    , gen.w_intensite_immo
 	, gen.w_second_home
 	, gen.w_foreigners
 	, gen.w_site_importance
