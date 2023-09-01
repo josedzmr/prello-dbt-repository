@@ -39,10 +39,10 @@ models:
     KPI_tests:
       tourisme:
         schema: 'tourisme_KPI'
-        materialized: table
+        materialized: view
       investors: 
         schema: 'investors_KPI'
-        materialized: table
+        materialized: view
       prep_investors:
         schema: 'prep_investors'
         materialized: view
