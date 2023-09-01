@@ -20,7 +20,8 @@ ORDER BY department_code ASC
 ),
 scores AS (
 SELECT 
-  CASE
+    *
+, CASE
     WHEN department = '2000' THEN '2B'
     WHEN department = '2999' THEN '2A'
     WHEN department = '1' THEN '01'
@@ -33,39 +34,50 @@ SELECT
     WHEN department = '8' THEN '08'
     WHEN department = '9' THEN '09'
     ELSE department
-  END AS department 
-, (population_growth_last10y * 0.2) AS population_growth
-, (sales_numbers * 0.225) AS sales_nb
-, (avg_salary * 0.085) AS avg_salary
-, (gross_yield * 0.105) AS gross_yield
-, (avg_m2_price_sales * 0.105) AS avg_m2_price
-, (rental_med_all * 0.105) AS rental_med
-, (intensite_tension_immo * 0.175) AS intensite_immo
-, (nb_second_home*0.295) AS second_home
-, (foreigners_stay_total*0.11) AS foreigners
-, (sum_site_importance*0.30) AS site_importance
-, (sum_estab_importance*0.295) AS estab_importance
-, (nb_second_home*0.295) + (foreigners_stay_total*0.11)+(sum_site_importance*0.30)+(sum_estab_importance*0.295) AS tourism_score
-, (population_growth_last10y * 0.2) + (sales_numbers * 0.225) + (avg_salary * 0.085) + (gross_yield * 0.105) + (avg_m2_price_sales * 0.105)+ (rental_med_all * 0.105) + (intensite_tension_immo * 0.175) AS invest_score    
+  END AS department_cleaned 
+, (population_growth_last10y * 0.2) AS w_population_growth
+, (sales_numbers * 0.225) AS w_sales_nb
+, (avg_salary * 0.085) AS w_avg_salary
+, (gross_yield * 0.105) AS w_gross_yield
+, (avg_m2_price_sales * 0.105) AS w_avg_m2_price
+, (rental_med_all * 0.105) AS w_rental_med
+, (intensite_tension_immo * 0.175) AS w_intensite_immo
+, (nb_second_home*0.295) AS w_second_home
+, (foreigners_stay_total*0.11) AS w_foreigners
+, (sum_site_importance*0.30) AS w_site_importance
+, (sum_estab_importance*0.295) AS w_estab_importance
+, (nb_second_home*0.295) + (foreigners_stay_total*0.11)+(sum_site_importance*0.30)+(sum_estab_importance*0.295) AS w_tourism_score
+, (population_growth_last10y * 0.2) + (sales_numbers * 0.225) + (avg_salary * 0.085) + (gross_yield * 0.105) + (avg_m2_price_sales * 0.105)+ (rental_med_all * 0.105) + (intensite_tension_immo * 0.175) AS w_invest_score    
 FROM normalisation
 )
 SELECT
-    department
-,   population_growth
-,   sales_nb
-,   avg_salary
-,   gross_yield
-,   avg_m2_price
-,   rental_med
-,   intensite_immo
-,   second_home
-,   foreigners
-,   site_importance
-,   estab_importance
-,   tourism_score
-,   invest_score
-,   (invest_score - MIN(invest_score) OVER ()) * 1.0 / (MAX(invest_score) OVER () - MIN(invest_score) OVER ()) AS scaled_invest_score
-,   (tourism_score  - MIN(tourism_score ) OVER ()) * 1.0 / (MAX(tourism_score) OVER () - MIN(tourism_score ) OVER ()) AS scaled_tourism_score
-,   (((invest_score - MIN(invest_score) OVER ()) * 1.0 / (MAX(invest_score) OVER () - MIN(invest_score) OVER ())) + ((tourism_score  - MIN(tourism_score ) OVER ()) * 1.0 / (MAX(tourism_score) OVER () - MIN(tourism_score ) OVER ()))) / 2 AS general_score
+    department_cleaned
+,   population_growth_last10y AS s_population_growth
+,   sales_numbers AS s_sales_nb
+,   avg_salary AS s_avg_salary
+,   gross_yield AS s_gross_yield
+,   avg_m2_price_sales AS s_avg_m2_price
+,   rental_med_all AS s_rental_med
+,   intensite_tension_immo AS s_intensite_immo
+,   nb_second_home AS s_second_home
+,   foreigners_stay_total AS s_foreigners
+,   sum_site_importance AS s_site_importance
+,   sum_estab_importance AS s_estab_importance
+,   w_population_growth
+,   w_sales_nb
+,   w_avg_salary
+,   w_gross_yield
+,   w_avg_m2_price
+,   w_rental_med
+,   w_intensite_immo
+,   w_second_home
+,   w_foreigners
+,   w_site_importance
+,   w_estab_importance
+,   w_tourism_score
+,   w_invest_score
+,   (w_invest_score - MIN(w_invest_score) OVER ()) * 1.0 / (MAX(w_invest_score) OVER () - MIN(w_invest_score) OVER ()) AS scaled_invest_score
+,   (w_tourism_score  - MIN(w_tourism_score ) OVER ()) * 1.0 / (MAX(w_tourism_score) OVER () - MIN(w_tourism_score ) OVER ()) AS scaled_tourism_score
+,   (((w_invest_score - MIN(w_invest_score) OVER ()) * 1.0 / (MAX(w_invest_score) OVER () - MIN(w_invest_score) OVER ())) + ((w_tourism_score  - MIN(w_tourism_score ) OVER ()) * 1.0 / (MAX(w_tourism_score) OVER () - MIN(w_tourism_score ) OVER ()))) / 2 AS general_score
 FROM scores
 ORDER BY general_score DESC
