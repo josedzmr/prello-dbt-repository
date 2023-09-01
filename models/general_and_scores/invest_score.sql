@@ -10,6 +10,15 @@ SELECT
   CASE
     WHEN department_cleaned = '2000' THEN '2B'
     WHEN department_cleaned = '2999' THEN '2A'
+    WHEN department_cleaned = '1' THEN '01'
+    WHEN department_cleaned = '2' THEN '02'
+    WHEN department_cleaned = '3' THEN '03'
+    WHEN department_cleaned = '4' THEN '04'
+    WHEN department_cleaned = '5' THEN '05'
+    WHEN department_cleaned = '6' THEN '06'
+    WHEN department_cleaned = '7' THEN '07'
+    WHEN department_cleaned = '8' THEN '08'
+    WHEN department_cleaned = '9' THEN '09'
     ELSE department_cleaned
   END AS deparmtent 
 , (population_growth_last10y * 0.2) AS population_growth

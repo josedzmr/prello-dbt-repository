@@ -23,6 +23,15 @@ SELECT
   CASE
     WHEN department = '2000' THEN '2B'
     WHEN department = '2999' THEN '2A'
+    WHEN department = '1' THEN '01'
+    WHEN department = '2' THEN '02'
+    WHEN department = '3' THEN '03'
+    WHEN department = '4' THEN '04'
+    WHEN department = '5' THEN '05'
+    WHEN department = '6' THEN '06'
+    WHEN department = '7' THEN '07'
+    WHEN department = '8' THEN '08'
+    WHEN department = '9' THEN '09'
     ELSE department
   END AS department 
 , (population_growth_last10y * 0.2) AS population_growth
