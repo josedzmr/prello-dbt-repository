@@ -6,6 +6,12 @@ SELECT
 FROM {{ref('stg_geometry_final')}}
 )
 
+, Alpes_marit AS (
+SELECT
+    *
+FROM {{ref('second_home_Alpes2')}}
+)
+
 SELECT
     gen.department_cleaned AS department
     , gen.w_tourism_score
@@ -36,8 +42,11 @@ SELECT
 	, gen.w_site_importance
 	, gen.w_estab_importance
     , geo.nom as name_department
-    , geo.geometry 
+    , geo.geometry
+    , Alpes_marit.avg_sum_scd_houses
 FROM {{ref('final_score')}} as gen
 INNER JOIN geometry as geo
 ON geo.code = gen.department_cleaned
+INNER JOIN Alpes_marit as Alpes_marit
+ON Alpes_marit.department = gen.department_cleaned
 ORDER BY department
