@@ -29,4 +29,5 @@ SELECT
 , w_estab_importance
 , name_department
 , geometry
+, ROW_NUMBER () OVER(ORDER BY general_score DESC) AS ranking
 FROM {{ ref('looker_grouping') }}
