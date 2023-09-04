@@ -32,7 +32,7 @@ GROUP BY department
   , overnight_stay_hotel
   , foreigners_hotel_rate
   , overnight_stay_camping
-  , fereigners_camping_rate as foreigners_camping_rate
+  , foreigners_camping_rate as foreigners_camping_rate
 FROM {{ref("stg_frequentation_touristic_establishment")}}
 )
 
