@@ -46,3 +46,6 @@ models:
       prep_investors:
         schema: 'prep_investors'
         materialized: view
+    general_and_scores:
+      schema: 'general'
+      materialized: table
