@@ -22,10 +22,12 @@ FROM rank_nb rb
 WHERE (rb.municipality_code LIKE '74%'OR rb.municipality_code LIKE '73%') AND rb.nb_scd_home > 1000 AND rb.rank_scd_rate < 460
 GROUP BY municipality_code, city_name
 )
+,   test AS(
 SELECT
     dep.municipality_code
-,   city_name
-,   LEFT(dep.municipality_code, 2) AS department
+--,   city_name
+--,   touristic_site
+--,   accomodation_type
 ,   AVG(secondary_home_rate) AS secondary_home_rate
 ,   AVG(nb_second_home) AS nb_second_home
 ,   SUM(site.importance) AS site_importance
@@ -33,5 +35,10 @@ SELECT
 FROM by_dep dep
 INNER JOIN {{ ref('stg_POI_touristic_sites_by_municipality') }} site USING (municipality_code)
 INNER JOIN {{ ref('stg_POI_tourist_establishments') }} esta USING (municipality_code)
-GROUP BY municipality_code, city_name
-ORDER BY site_importance DESC
+GROUP BY municipality_code--, city_name, touristic_site, accomodation_type
+--ORDER BY site_importance DESC
+)
+SELECT
+    *
+,   LEFT(municipality_code, 2) AS department
+FROM test
