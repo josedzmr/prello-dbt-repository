@@ -43,6 +43,7 @@ SELECT
 	, gen.w_estab_importance
     , geo.nom as name_department
     , geo.geometry
+    , Alpes_marit.nb_second_home
     , Alpes_marit.avg_sum_scd_houses
 FROM {{ref('final_score')}} as gen
 INNER JOIN geometry as geo
